@@ -29,9 +29,23 @@ $(document).ready(function(){
     searchValues()
   });
 
+  //Selecting websites
+  $('.filters .group.site-select li').click(function(){
+    var item =  $(this).text().toLowerCase(),
+        index = names.indexOf(item);
+
+    if (index == -1){
+      names.push(item);
+      console.log('added ' + item)
+    } else {
+      names.splice(index, 1);
+      console.log('removed ' + item)
+    }
+  })
+
 });
 
-var names = ['banggood'];
+var names = ['banggood', 'gearbest'];
 
 var urls = {
   banggood : function(){
@@ -115,9 +129,7 @@ function search(search){
               last.attr('link', r + '?p=WL2504207536201306OF');
               break;
           }
-
         }
-
       })
 
       //These things must be called
@@ -127,7 +139,7 @@ function search(search){
       searchValues();
 
 
-      //Showing loading screen
+      //Hiding loading screen
       if (count == l) {
         $('body').css({'overflow' : 'auto'});
         $('.loading').stop().fadeOut(200);

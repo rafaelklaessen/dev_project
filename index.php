@@ -62,6 +62,12 @@
           From <input class="min" type="number" name="Minimum" placeholder="0"> to <input class="max" type="number" name="Maximum" placeholder=""><button type="button">Go</button>
         </p>
       </section>
+      <section class="group site-select">
+        <ul>
+          <li>Banggood</li>
+          <li>GearBest</li>
+        </ul>
+      </section>
     </aside>
     <section class="product-container"></section>
     <section class="loading">
