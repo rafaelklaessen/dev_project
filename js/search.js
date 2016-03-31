@@ -32,15 +32,19 @@ $(document).ready(function(){
   //Selecting websites
   $('.filters .group.site-select li').click(function(){
     var item =  $(this).text().toLowerCase(),
-        index = names.indexOf(item);
+        index = names.indexOf(item),
+        val = $('.search-input').val();
+
+    $(this).toggleClass('selected');
 
     if (index == -1){
       names.push(item);
-      console.log('added ' + item)
     } else {
       names.splice(index, 1);
-      console.log('removed ' + item)
     }
+
+    if (val != '') search(val);
+
   })
 
 });
@@ -74,98 +78,102 @@ function getNum(name){
 var count = 0;
 
 function search(search){
-  //Clearing container
-  $('.product-container').html('');
+  try {
 
-  //Showing loading screen
-  $('body').css({'overflow' : 'hidden'});
-  $('.loading').stop().fadeIn(200);
+    if (names.length == 0) throw "There are no sites selected!"
 
-  count = 0;
+    //Clearing container
+    $('.product-container').html('');
 
-  for (i = 0; i < names.length; i++){
-    showResults(urls[names[i]].call(search), names.length);
-  }
+    //Showing loading screen
+    $('body').css({'overflow' : 'hidden'});
+    $('.loading').stop().fadeIn(200);
 
-  function showResults(u, l){
-    $.ajax({url: u}).done(function(data){
-      count = count + 1;
+    count = 0;
 
-      $.each(data.results, function(i, type){
-        $('.product-container').append('<article class="product"></article>');
-        var last = $('.product-container .product:last-child'),
-            alt = 'No alt found!',
-            currency = '&#36;',
-            x;
+    for (i = 0; i < names.length; i++){
+      showResults(urls[names[i]].call(search), names.length);
+    }
 
-        for(x in data.results[i]){
+    function showResults(u, l){
+      $.ajax({url: u}).done(function(data){
+        count = count + 1;
 
-          var r = data.results[i][x];
+        $.each(data.results, function(i, type){
+          $('.product-container').append('<article class="product"></article>');
+          var last = $('.product-container .product:last-child'),
+              alt = 'No alt found!',
+              currency = '&#36;',
+              x;
 
-          switch (x) {
-            case 'name':
-              last.append('<h2 class="name">' + r + '</h2>');
-              break;
-            case 'picture':
-              last.prepend('<img src="' + r + '" alt="' + alt + '"/>');
-              break;
-            case 'picture/_alt':
-              alt = r;
-              break;
-            case 'price':
-              last.append('<div class="price">' + currency + '<span class="price_int">' + r + '</span></div>');
-              last.attr('price', r)
-              break;
-            case 'price/_currency':
-              if (r == 'USD'){
-                currency = '&#36;';
-              } else if (r == 'EUR'){
-                currency = '&euro;';
-              } else {
-                currency = '&#xA3;';
-              }
-              break;
-            case 'link':
-              last.attr('link', r + '?p=WL2504207536201306OF');
-              break;
+          for(x in data.results[i]){
+
+            var r = data.results[i][x];
+
+            switch (x) {
+              case 'name':
+                last.append('<h2 class="name">' + r + '</h2>');
+                break;
+              case 'picture':
+                last.prepend('<img src="' + r + '" alt="' + alt + '"/>');
+                break;
+              case 'picture/_alt':
+                alt = r;
+                break;
+              case 'price':
+                last.append('<div class="price">' + currency + '<span class="price_int">' + r + '</span></div>');
+                last.attr('price', r)
+                break;
+              case 'price/_currency':
+                if (r == 'USD'){
+                  currency = '&#36;';
+                } else if (r == 'EUR'){
+                  currency = '&euro;';
+                } else {
+                  currency = '&#xA3;';
+                }
+                break;
+              case 'link':
+                last.attr('link', r + '?p=WL2504207536201306OF');
+                break;
+            }
           }
+        })
+
+        //These things must be called
+        sortPrice(lastSet);
+        openLink();
+        //If the user has given a price sorting it must be applied too
+        searchValues();
+
+        //Hiding loading screen
+        if (count == l) {
+          $('body').css({'overflow' : 'auto'});
+          $('.loading').stop().fadeOut(200);
+        }
+      });
+
+      return true;
+    }
+
+    //Sort items on price
+    sortPrice(lastSet);
+
+    //Makes products clickable
+    function openLink(){
+      $('.product').click(function(){
+        link = $(this).attr('link');
+
+        if (typeof link != 'undefined') {
+          window.open(link);
         }
       })
-
-      //These things must be called
-      sortPrice(lastSet);
-      openLink();
-      //If the user has given a price sorting it must be applied too
-      searchValues();
-
-
-      //Hiding loading screen
-      if (count == l) {
-        $('body').css({'overflow' : 'auto'});
-        $('.loading').stop().fadeOut(200);
-      }
-    });
+    }
 
     return true;
-
-  }
-
-  //Sort items on price
-  sortPrice(lastSet);
-
-  //Makes products clickable
-  function openLink(){
-    $('.product').click(function(){
-      link = $(this).attr('link');
-
-      if (typeof link != 'undefined') {
-        window.open(link);
-      }
-    })
-  }
-
-  return true;
-
+   } catch (err) {
+     return err;
+   }
 }
 
 //Sort items on price (cheap to expensive or expensive to cheap)
@@ -195,7 +203,6 @@ function sortPrice(d){
 //Sorts on price (minimum and maximum)
 function sortonPrice(min, max) {
   try {
-
     //Looks if there are any errors with the parameters
     if (min > max) throw 'The minimum price cannot be higher than the maximum price!';
     if (typeof min != 'number') throw 'The minimum number is not a number';
@@ -216,5 +223,4 @@ function sortonPrice(min, max) {
   } catch(err){
     return 'An error occurred: ' + err;
   }
-
 }

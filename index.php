@@ -64,8 +64,8 @@
       </section>
       <section class="group site-select">
         <ul>
-          <li>Banggood</li>
-          <li>GearBest</li>
+          <li class="selected">Banggood</li>
+          <li class="selected">GearBest</li>
         </ul>
       </section>
     </aside>

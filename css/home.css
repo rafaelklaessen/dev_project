@@ -16,6 +16,10 @@ body {
   font-weight: bold;
 }
 
+.filters .group span, .filters .group button, .filters .group ul li {
+  cursor: pointer;
+}
+
 .loading {
   position: absolute;
   top: 0;
