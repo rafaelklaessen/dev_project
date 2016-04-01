@@ -7,7 +7,6 @@ $(document).ready(function(){
   f.submit(function(event){
     event.preventDefault();
 
-    //Fix this
     search($('.search-input').val());
 
   })
