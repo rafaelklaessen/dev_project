@@ -7,7 +7,9 @@ $(document).ready(function(){
   f.submit(function(event){
     event.preventDefault();
 
-    search($('.search-input').val());
+    var val = $('.search-input').val();
+
+    if (val != '' && val != ' ') search(val);
 
   })
 
@@ -21,6 +23,7 @@ $(document).ready(function(){
   })
 
   mmContainer = '.filters .group.sortonprice .input-content';
+
   $(mmContainer + ' input').keydown(function(){
     searchValues()
   });
@@ -31,36 +34,55 @@ $(document).ready(function(){
 
   //Selecting websites
   $('.filters .group.site-select li').click(function(){
-    var item =  $(this).text().toLowerCase(),
-        index = names.indexOf(item),
+    var shop =  $(this).text().toLowerCase(),
+        index = shops.indexOf(shop),
         val = $('.search-input').val();
 
     $(this).toggleClass('selected');
 
     if (index == -1){
-      names.push(item);
+      shops.push(shop);
     } else {
-      names.splice(index, 1);
+      shops.splice(index, 1);
     }
 
-    if (val != '') search(val);
+    filterShops();
 
   })
 
+  filterShops();
+
 });
 
-var names = ['banggood', 'gearbest'];
+
+var names = ['banggood', 'gearbest', 'aliexpress'],
+    shops = ['banggood', 'gearbest', 'aliexpress'];
 
 var urls = {
-  banggood : function(){
+  banggood : function() {
     return 'https://api.import.io/store/connector/f9f855c7-2d72-4a77-a867-1bbbfaae29b8/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   },
-  gearbest : function(){
+  gearbest : function() {
     return 'https://api.import.io/store/connector/181dc267-ff29-421c-a12e-d316acd5e0b5/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
+  },
+  aliexpress : function() {
+    return 'https://api.import.io/store/connector/f15c6b86-862b-4b53-942e-e4395be3815a/_query?input=searchwords:' + this + 'case&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   }
 }
 
-function searchValues(){
+function filterShops() {
+
+  $('.product-container [shop]').each(function() {
+    if (shops.indexOf($(this).attr('shop')) != -1) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+
+}
+
+function searchValues() {
   var min = getNum('.min'),
       max = getNum('.max');
 
@@ -78,6 +100,8 @@ function getNum(name){
 var count = 0;
 
 function search(search){
+  search = encodeURI(search);
+
   try {
 
     if (names.length == 0) throw "There are no sites selected!"
@@ -92,10 +116,13 @@ function search(search){
     count = 0;
 
     for (i = 0; i < names.length; i++){
-      showResults(urls[names[i]].call(search), names.length);
+      var n = names[i];
+
+      showResults(urls[n].call(search), names.length, n);
+
     }
 
-    function showResults(u, l){
+    function showResults(u, l, n){
       $.ajax({url: u}).done(function(data){
         count = count + 1;
 
@@ -103,8 +130,11 @@ function search(search){
           $('.product-container').append('<article class="product"></article>');
           var last = $('.product-container .product:last-child'),
               alt = 'No alt found!',
+              priceTag = '',
               currency = '&#36;',
               x;
+
+          last.attr('shop', n)
 
           for(x in data.results[i]){
 
@@ -113,16 +143,14 @@ function search(search){
             switch (x) {
               case 'name':
                 last.append('<h2 class="name">' + r + '</h2>');
+                alt = r;
                 break;
               case 'picture':
                 last.prepend('<img src="' + r + '" alt="' + alt + '"/>');
                 break;
-              case 'picture/_alt':
-                alt = r;
-                break;
               case 'price':
-                last.append('<div class="price">' + currency + '<span class="price_int">' + r + '</span></div>');
-                last.attr('price', r)
+                last.append('<div class="price">' + currency + '<span class="price_int">' + r + '</span><span class="price_tag">' + priceTag + '</span></div>');
+                last.attr('price', r);
                 break;
               case 'price/_currency':
                 if (r == 'USD'){
@@ -132,6 +160,9 @@ function search(search){
                 } else {
                   currency = '&#xA3;';
                 }
+                break;
+              case 'pricetag':
+                priceTag = ' ~ ' + r;
                 break;
               case 'link':
                 last.attr('link', r + '?p=WL2504207536201306OF');
@@ -145,6 +176,8 @@ function search(search){
         openLink();
         //If the user has given a price sorting it must be applied too
         searchValues();
+        //Shops still need to be filtered
+        filterShops();
 
         //Hiding loading screen
         if (count == l) {
@@ -212,9 +245,9 @@ function sortonPrice(min, max) {
     $('.product-container .product').each(function(){
       var p = $(this).attr('price')
       if (p >= min && p <= max) {
-        $(this).fadeIn(0)
+        if (shops.indexOf($(this).attr('shop')) != -1) $(this).show();
       }else{
-        $(this).fadeOut(0);
+        $(this).hide();
       }
     })
 
