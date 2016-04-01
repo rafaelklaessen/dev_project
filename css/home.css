@@ -6,6 +6,7 @@ body {
   color: #FFFFFF;
   background-color: blue;
   display: none;
+  cursor: pointer;
 }
 
 .product .name {
