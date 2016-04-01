@@ -1,39 +1,39 @@
-$(document).ready(function(){
+$(document).ready(function() {
   //For keeping the way of sorting (cheap-expensive or expensive-cheap), default: true;
   lastSet = true;
 
   var f = $('.search form');
 
-  f.submit(function(event){
+  f.submit(function(event) {
     event.preventDefault();
 
     var val = $('.search-input').val();
 
     if (val != '' && val != ' ') search(val);
 
-  })
+  });
 
-  $('.filters .group span').click(function(){
+  $('.filters .group span').click(function() {
     var t = $(this);
 
     t.addClass('selected');
     t.siblings('span').removeClass('selected');
     eval(t.attr('data-execute'));
 
-  })
+  });
 
   mmContainer = '.filters .group.sortonprice .input-content';
 
-  $(mmContainer + ' input').keydown(function(){
-    searchValues()
+  $(mmContainer + ' input').keydown(function() {
+    searchValues();
   });
 
-  $(mmContainer + ' input').keyup(function(){
-    searchValues()
+  $(mmContainer + ' input').keyup(function() {
+    searchValues();
   });
 
   //Selecting websites
-  $('.filters .group.site-select li').click(function(){
+  $('.filters .group.site-select li').click(function() {
     var shop =  $(this).text().toLowerCase(),
         index = shops.indexOf(shop),
         val = $('.search-input').val();
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
     filterShops();
 
-  })
+  });
 
   filterShops();
 
@@ -66,7 +66,7 @@ var urls = {
     return 'https://api.import.io/store/connector/181dc267-ff29-421c-a12e-d316acd5e0b5/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   },
   aliexpress : function() {
-    return 'https://api.import.io/store/connector/f15c6b86-862b-4b53-942e-e4395be3815a/_query?input=searchwords:' + this + 'case&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
+    return 'https://api.import.io/store/connector/f15c6b86-862b-4b53-942e-e4395be3815a/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   }
 }
 
@@ -93,13 +93,13 @@ function searchValues() {
 
 }
 
-function getNum(name){
+function getNum(name) {
   return parseInt($(mmContainer + ' ' + name).val());
 }
 
 var count = 0;
 
-function search(search){
+function search(search) {
   search = encodeURI(search);
 
   try {
@@ -122,11 +122,11 @@ function search(search){
 
     }
 
-    function showResults(u, l, n){
+    function showResults(u, l, n) {
       $.ajax({url: u}).done(function(data){
         count = count + 1;
 
-        $.each(data.results, function(i, type){
+        $.each(data.results, function(i) {
           $('.product-container').append('<article class="product"></article>');
           var last = $('.product-container .product:last-child'),
               alt = 'No alt found!',
@@ -134,9 +134,9 @@ function search(search){
               currency = '&#36;',
               x;
 
-          last.attr('shop', n)
+          last.attr('shop', n);
 
-          for(x in data.results[i]){
+          for(x in data.results[i]) {
 
             var r = data.results[i][x];
 
@@ -178,6 +178,8 @@ function search(search){
         searchValues();
         //Shops still need to be filtered
         filterShops();
+        //The URLs of GearBest products must be corrected (to prevent some wrong linking)
+        correctURLs();
 
         //Hiding loading screen
         if (count == l) {
@@ -193,7 +195,7 @@ function search(search){
     sortPrice(lastSet);
 
     //Makes products clickable
-    function openLink(){
+    function openLink() {
       $('.product').click(function(){
         link = $(this).attr('link');
 
@@ -204,13 +206,22 @@ function search(search){
     }
 
     return true;
-   } catch (err) {
-     return err;
-   }
+  } catch (err) {
+    return err;
+  }
+}
+
+//Correct URL when the shop is gearbest
+function correctURLs() {
+  $('.product[shop=gearbest]').each(function() {
+    var orgLinks = $(this).attr('link'),
+        newLinks = orgLinks.split(',')
+
+    $(this).attr('link', newLinks[0]);
 }
 
 //Sort items on price (cheap to expensive or expensive to cheap)
-function sortPrice(d){
+function sortPrice(d) {
   try {
     if (typeof d != 'boolean' && typeof d != 'undefined') throw 'Parameter is not a boolean!'
     if (typeof d == 'undefined') d = true;
@@ -253,7 +264,7 @@ function sortonPrice(min, max) {
 
     return true;
 
-  } catch(err){
+  } catch(err) {
     return 'An error occurred: ' + err;
   }
 }
