@@ -218,6 +218,7 @@ function correctURLs() {
         newLinks = orgLinks.split(',')
 
     $(this).attr('link', newLinks[0]);
+  });
 }
 
 //Sort items on price (cheap to expensive or expensive to cheap)
