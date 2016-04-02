@@ -44,41 +44,57 @@
   </head>
   <body>
 
+    <header>
+      <div class="container">
+        <figure class="logo">
+          <img src="images/logo.png" alt="Logo"/>
+        </figure>
+      </div>
+    </header>
+
     <section class="search">
+      <h1 class="intro-title">
+        <div>Find the best Chinese products</div>
+        <div>in one search.</div>
+      </h1>
       <form>
         <input class="search-input" type="text" placeholder="Search for items...">
-        <input type="submit" value="Search">
+        <input class="submit-btn" type="submit" value="Search">
       </form>
     </section>
 
-    <aside class="filters">
-      <h1>Filter:</h1>
-      <section class="group">
-        <h3>Price:</h3>
-        <span class="opt-1 selected" data-execute="sortPrice(true)">Cheap to expensive</span>
-        <span class="opt-2" data-execute="sortPrice(false)">Expensive to cheap</span>
-      </section>
-      <section class="group sortonprice">
-        <h3>Price (minimum, maximum):</h3>
-        <p class="input-content">
-          From <input class="min" type="number" name="Minimum" placeholder="0"> to <input class="max" type="number" name="Maximum" placeholder=""><button type="button">Go</button>
-        </p>
-      </section>
-      <section class="group site-select">
-        <ul>
-          <li class="selected">AliExpress</li>
-          <li class="selected">Banggood</li>
-          <li class="selected">GearBest</li>
-        </ul>
-      </section>
-    </aside>
+    <section class="filters-collapsed">
+      <ul>
+        <li sorting="high"><img src="images/icons/sort.png" alt="Icon"/><span>Price <span class="indication">(High-Low)</span></span></li>
+        <li><img src="images/icons/shipping.png" alt="Icon"/><span>Free shipping</span></li>
+        <li><img src="images/icons/filter.png" alt="Icon"/><span>Filter shops</span></li>
+      </ul>
+    </section>
 
-    <section class="product-container"></section>
-    
-    <section class="loading">
-      <div class="container">
-        <img class="loading-icon" src="images/icons/loading.gif" alt="Loading icon"/>
-      </div>
+    <section class="results">
+      <section class="filters">
+        <h1 class="title">Filters</h1>
+        <section class="group sortonprice">
+          <h3 class="title">Search on price</h3>
+          <p class="input-content">
+            From <input class="min" type="number" name="Minimum" placeholder="0"> to <input class="max" type="number" name="Maximum" placeholder=""><button type="button">Go</button>
+          </p>
+        </section>
+        <section class="group site-select">
+          <h3 class="title">Sites that are being searched: </h3>
+          <ul>
+            <li class="selected">AliExpress</li>
+            <li class="selected">Banggood</li>
+            <li class="selected">GearBest</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="product-container"></section>
+
+      <section class="loading">
+        Loading
+      </section>
     </section>
 
   </body>

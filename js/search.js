@@ -11,16 +11,29 @@ $(document).ready(function() {
 
     var val = $('.search-input').val();
 
-    if (val != '' && val != ' ') search(val);
+    if (val != '' && val != ' ') {
+      search(val);
+      animateResults();
+    }
 
   });
 
-  $('.filters .group span').click(function() {
+  $('.filters-collapsed ul li').click(function() {
     var t = $(this);
 
-    t.addClass('selected');
-    t.siblings('span').removeClass('selected');
-    eval(t.attr('data-execute'));
+    if (t.is('[sorting]')) {
+      var tf = t.find('.indication');
+
+      if (t.attr('sorting') == 'high') {
+        sortPrice(false);
+        t.attr('sorting', 'low');
+        tf.text('Low-High');
+      } else {
+        sortPrice(true);
+        t.attr('sorting', 'high');
+        tf.text('High-Low');
+      }
+    }
 
   });
 
@@ -55,6 +68,13 @@ $(document).ready(function() {
   filterShops();
 
 });
+
+function animateResults() {
+  $('.search').addClass('search-activated');
+  $('.search form input.submit-btn').val('');
+  $('.filters-collapsed').addClass('filters-activated');
+  $('.results').addClass('results-activated');
+}
 
 var names = ['banggood', 'gearbest', 'aliexpress'],
     shops = ['banggood', 'gearbest', 'aliexpress'];
