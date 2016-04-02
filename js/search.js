@@ -107,7 +107,6 @@ function convertPrices() {
         break;
     }
 
-
   });
 
 }
@@ -269,7 +268,7 @@ function search(search) {
 function correctURLs() {
   $('.product[shop=gearbest]').each(function() {
     var orgLinks = $(this).attr('link'),
-        newLinks = orgLinks.split(',')
+        newLinks = orgLinks.split(',');
 
     $(this).attr('link', newLinks[0]);
   });
