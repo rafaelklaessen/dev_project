@@ -1,3 +1,5 @@
+set_currency = 'EUR';
+
 $(document).ready(function() {
   //For keeping the way of sorting (cheap-expensive or expensive-cheap), default: true;
   lastSet = true;
@@ -54,7 +56,6 @@ $(document).ready(function() {
 
 });
 
-
 var names = ['banggood', 'gearbest', 'aliexpress'],
     shops = ['banggood', 'gearbest', 'aliexpress'];
 
@@ -68,6 +69,57 @@ var urls = {
   aliexpress : function() {
     return 'https://api.import.io/store/connector/f15c6b86-862b-4b53-942e-e4395be3815a/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   }
+}
+
+function convertPrices() {
+
+  $('.product-container .product').each(function() {
+    var cur = $(this).find('.price .price_currency'),
+        c = cur.text(),
+        p_int = $(this).find('.price .price_int')
+        amount = p_int.text(),
+        convertFrom = 'USD';
+
+    switch (c) {
+      case '$' :
+        convertFrom = 'USD';
+        break;
+      case '€' :
+        convertFrom = 'EUR';
+        break;
+      case '£' :
+        convertFrom = 'GBP';
+        break;
+    }
+
+    //Must be in a different function, otherwise only one price is taken for conversion.
+    convertRate(convertFrom, amount, p_int);
+
+    switch (set_currency) {
+      case 'USD' :
+        cur.html('&#36;');
+        break;
+      case 'EUR' :
+        cur.html('&euro;');
+        break;
+      case 'GBP' :
+        cur.html('&#xA3;');
+        break;
+    }
+
+
+  });
+
+}
+
+function convertRate(convertFrom, amount, p_int) {
+
+  $.getJSON("http://api.fixer.io/latest?base=AUD", function(data) {
+    fx.rates = data.rates;
+    r = fx(amount).from(convertFrom).to(set_currency).toFixed(2);
+    p_int.text(r);
+  });
+
 }
 
 function filterShops() {
@@ -149,7 +201,7 @@ function search(search) {
                 last.prepend('<img src="' + r + '" alt="' + alt + '"/>');
                 break;
               case 'price':
-                last.append('<div class="price">' + currency + '<span class="price_int">' + r + '</span><span class="price_tag">' + priceTag + '</span></div>');
+                last.append('<div class="price"><span class="price_currency">' + currency + '</span><span class="price_int">' + r + '</span><span class="price_tag">' + priceTag + '</span></div>');
                 last.attr('price', r);
                 break;
               case 'price/_currency':
@@ -173,6 +225,7 @@ function search(search) {
 
         //These things must be called
         sortPrice(lastSet);
+        //Must be called, otherwise links won't be opened
         openLink();
         //If the user has given a price sorting it must be applied too
         searchValues();
@@ -185,6 +238,7 @@ function search(search) {
         if (count == l) {
           $('body').css({'overflow' : 'auto'});
           $('.loading').stop().fadeOut(200);
+          convertPrices();
         }
       });
 
