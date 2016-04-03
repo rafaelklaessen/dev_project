@@ -1,31 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic);
 
 body {
-  margin: 0;
-  background-color: #0860D8;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.5;
-    background-image: url('images/icons/search.png');
+  overflow: hidden;
 }
 
 body * {
-  transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
   box-sizing: border-box;
 }
 
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   padding-left: 90px;
   padding-right: 90px;
   width: 100%;
   height: 100px;
-  background-color: #0860D8;
   box-sizing: border-box;
   z-index: 20;
 }
@@ -190,10 +183,12 @@ header .container .logo img {
   top: 100%;
   left: 0;
   width: 100%;
+  opacity: 0;
 }
 
 .results-activated {
   top: 300px;
+  opacity: 1;
 }
 
 .results .filters {
@@ -216,7 +211,7 @@ header .container .logo img {
 
 .results .filters .group {
   float: left;
-  width: 50%;
+  width: 33.3333333333%;
   font-size: 18px;
 }
 
@@ -268,14 +263,12 @@ header .container .logo img {
   background-color: #C90376;
 }
 
-.results .product_container .product {
-  color: #FFFFFF;
-  background-color: blue;
-  display: none;
+.results .product-container .product {
   cursor: pointer;
+  display: none;
 }
 
-.results .product_container .product .name {
+.results .product-container .product .name {
   margin: 0;
 }
 

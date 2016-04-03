@@ -1,15 +1,17 @@
-set_currency = 'EUR';
+set_currency = 'USD';
 
 $(document).ready(function() {
   //For keeping the way of sorting (cheap-expensive or expensive-cheap), default: true;
   lastSet = true;
 
   var f = $('.search form');
+  //Must be focussed so that the document won't go out of view (because other inputs still can be selected)
+  $('.search form .search-input').focus();
 
   f.submit(function(event) {
     event.preventDefault();
 
-    var val = $('.search-input').val();
+    var val = $('.search form .search-input').val();
 
     if (val != '' && val != ' ') {
       search(val);
@@ -50,8 +52,7 @@ $(document).ready(function() {
   //Selecting websites
   $('.filters .group.site-select li').click(function() {
     var shop =  $(this).text().toLowerCase(),
-        index = shops.indexOf(shop),
-        val = $('.search-input').val();
+        index = shops.indexOf(shop);
 
     $(this).toggleClass('selected');
 
@@ -62,6 +63,22 @@ $(document).ready(function() {
     }
 
     filterShops();
+
+  });
+
+  //Setting default payment method as selected
+  $('.filters .group.payment-method li[currency=' + set_currency + ']').addClass('selected');
+
+  //Selecting payment method
+  $('.filters .group.payment-method li').click(function() {
+    var payment =  $(this).text().toLowerCase();
+
+    $(this).addClass('selected');
+    $(this).siblings().removeClass('selected');
+
+    set_currency = $(this).attr('currency');
+
+    convertPrices();
 
   });
 
