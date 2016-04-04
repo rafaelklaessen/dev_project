@@ -25,6 +25,7 @@ $(document).ready(function() {
   $('.filters-collapsed ul li').click(function() {
     var t = $(this);
 
+    //Soring
     if (t.is('[sorting]')) {
       var tf = t.find('.indication');
 
@@ -37,6 +38,19 @@ $(document).ready(function() {
         t.attr('sorting', 'high');
         tf.text('High-Low');
       }
+    } else if (t.is('[toggle-filters]')) {
+      f = $('.filters');
+
+      if (f.hasClass('is-open')) {
+        t.removeClass('selected');
+        f.removeClass('is-open');
+        f.stop().slideUp(400);
+      } else {
+        t.addClass('selected');
+        f.addClass('is-open');
+        f.stop().slideDown(400);
+      }
+
     }
 
   });
@@ -89,6 +103,7 @@ $(document).ready(function() {
 });
 
 function animateResults() {
+  $('.filters .sortonprice input').attr('tabindex', '1');
   $('.search').addClass('search-activated');
   $('.search form input.submit-btn').val('');
   $('.filters-collapsed').addClass('filters-activated');

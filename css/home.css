@@ -161,6 +161,12 @@ header .container .logo img {
   list-style: none;
 }
 
+.filters-collapsed ul * {
+  transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+}
+
 .filters-collapsed ul li {
   float: left;
   margin-left: 50px;
@@ -168,6 +174,10 @@ header .container .logo img {
   line-height: 40px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.filters-collapsed ul .selected {
+  font-weight: 700;
 }
 
 .filters-collapsed ul li img {
@@ -192,13 +202,14 @@ header .container .logo img {
 
 .results .filters {
   margin-bottom: 50px;
+  padding: 20px 90px;
   width: 100%;
   height: 300px;
   background-color: #064BAC;
-}
-
-.results .filters {
-  padding: 20px 90px;
+  display: none;
+  transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
 }
 
 .results .filters .title {
@@ -219,22 +230,35 @@ header .container .logo img {
   font-weight: 600;
 }
 
+.results .filters .group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .results .filters .group .selected {
   font-weight: bold;
 }
 
-.filters .group ul {
-  list-style: none;
+.results .filters .group ul * {
+  transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
 }
 
 .results .filters .group span, .filters .group button, .filters .group ul li {
   cursor: pointer;
 }
 
+.results .filters .sortonprice .input-content {
+  margin: 0;
+}
+
 .results .filters .sortonprice .input-content input {
   margin-left: 5px;
   margin-right: 5px;
   padding-left: 10px;
+  width: 80px;
   font-size: 18px;
   line-height: inherit;
   color: inherit;
@@ -262,16 +286,11 @@ header .container .logo img {
   background-color: #C90376;
 }
 
-.results .filters .currency ul {
-  margin: 0;
-  padding: 0;
-}
-
 .results .filters .currency ul li {
   float: left;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 24px;
+  font-size: 40px;
 }
 
 .results .product-container .product {
