@@ -7,6 +7,8 @@ $(document).ready(function() {
   var f = $('.search form');
   //Must be focussed so that the document won't go out of view (because other inputs still can be selected)
   $('.search form .search-input').focus();
+  //Document must scroll to the top to fix issues
+  $(document).scrollTop(0);
 
   f.submit(function(event) {
     event.preventDefault();
@@ -39,7 +41,7 @@ $(document).ready(function() {
 
   });
 
-  mmContainer = '.filters .group.sortonprice .input-content';
+  mmContainer = '.filters .sortonprice .input-content';
 
   $(mmContainer + ' input').keydown(function() {
     searchValues();
@@ -50,7 +52,7 @@ $(document).ready(function() {
   });
 
   //Selecting websites
-  $('.filters .group.site-select li').click(function() {
+  $('.filters .site-select li').click(function() {
     var shop =  $(this).text().toLowerCase(),
         index = shops.indexOf(shop);
 
@@ -67,10 +69,10 @@ $(document).ready(function() {
   });
 
   //Setting default payment method as selected
-  $('.filters .group.payment-method li[currency=' + set_currency + ']').addClass('selected');
+  $('.filters .currency li[currency=' + set_currency + ']').addClass('selected');
 
   //Selecting payment method
-  $('.filters .group.payment-method li').click(function() {
+  $('.filters .currency li').click(function() {
     var payment =  $(this).text().toLowerCase();
 
     $(this).addClass('selected');
