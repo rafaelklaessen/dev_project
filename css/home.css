@@ -98,8 +98,10 @@ header .container .logo img {
 .search form input.search-input {
   padding-left: 10px;
   width: 375px;
+  line-height: 38px;
   color: #6A6A6A;
   font-style: italic;
+  border: 1px solid #BFBFBF;
 }
 
 .search-activated form input.search-input {
@@ -107,6 +109,7 @@ header .container .logo img {
   color: #FFFFFF;
   font-style: normal;
   background: none;
+  border: none;
   border-bottom: 2px solid #FFFFFF;
   border-radius: 0;
 }
@@ -120,7 +123,7 @@ header .container .logo img {
 }
 
 .search-activated form input.submit-btn {
-  margin: 7px;
+  margin: 6px;
   margin-left: 27px;
   width: 30px;
   height: 30px;
@@ -177,7 +180,7 @@ header .container .logo img {
 }
 
 .filters-collapsed ul .selected {
-  font-weight: 700;
+  border-bottom: 1px solid #FFFFFF;
 }
 
 .filters-collapsed ul li img {
@@ -237,7 +240,7 @@ header .container .logo img {
 }
 
 .results .filters .group .selected {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .results .filters .group ul * {
@@ -293,13 +296,53 @@ header .container .logo img {
   font-size: 40px;
 }
 
+.results .product-container {
+  position: relative;
+  margin-left: -40px;
+  padding-left: 90px;
+  padding-right: 90px;
+  z-index: 2;
+}
+
 .results .product-container .product {
+  position: relative;
+  float: left;
+  padding: 25px 30px;
+  margin: 0 40px 80px 40px;
+  width: calc(25% - 80px);
+  background-color: #FFFFFF;
+  border: 1px solid #BFBFBF;
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
   display: none;
 }
 
+.results .product-container .product img {
+  width: 100%;
+  height: auto;
+}
+
 .results .product-container .product .name {
   margin: 0;
+  margin-top: 25px;
+  color: #333333;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  max-height: 54px;
+  overflow: hidden;
+}
+
+.results .product-container .product .price {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 5px;
+  min-width: 100px;
+  text-align: center;
+  background-color: #0860D8;
+  border-radius: 5px;
 }
 
 .results .loading {

@@ -251,7 +251,7 @@ function search(search) {
                 alt = r;
                 break;
               case 'picture':
-                last.prepend('<img src="' + r + '" alt="' + alt + '"/>');
+                last.prepend('<img src="' + r + '" alt="' + alt + '">');
                 break;
               case 'price':
                 last.append('<div class="price"><span class="price_currency">' + currency + '</span><span class="price_int">' + r + '</span><span class="price_tag">' + priceTag + '</span></div>');
