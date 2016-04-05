@@ -286,11 +286,14 @@ function search(search) {
         filterShops();
         //The URLs of GearBest products must be corrected (to prevent some wrong linking)
         correctURLs();
+        //Hover effects must be added!
+        addHover();
 
-        //Hiding loading screen
+        //Hiding loading screen and running required stuff
         if (count == l) {
           $('body').css({'overflow' : 'auto'});
           $('.loading').stop().fadeOut(200);
+          $('.product-container .product').append('<div class="hover-overlay"></div>');
           convertPrices();
         }
       });
@@ -316,6 +319,33 @@ function search(search) {
   } catch (err) {
     return err;
   }
+}
+
+//Adds hover effects to products
+function addHover() {
+  var p = $('.product-container .product');
+
+  //Add hover-overlay element if it isn't there yet
+  p.each(function(){
+    if ($(this).children().find('.hover-overlay').length) {
+      p.append('<div class="hover-overlay"></div>');
+    }
+  });
+
+  var s;
+
+  p.hover(
+    function() {
+      $(this).css({'border' : 'none'});
+      $(this).find('img').css({'transform' : 'scale(1.05)'})
+      $(this).find('.hover-overlay').stop().fadeIn(400);
+    },
+    function() {
+      $(this).css({'border' : '1px solid #BFBFBF;'});
+        $(this).find('img').css({'transform' : 'scale(1)'})
+      $(this).find('.hover-overlay').stop().fadeOut(400);
+    }
+  );
 }
 
 //Correct URL when the shop is gearbest
