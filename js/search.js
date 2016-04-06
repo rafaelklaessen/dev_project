@@ -121,7 +121,7 @@ var urls = {
     return 'https://api.import.io/store/connector/181dc267-ff29-421c-a12e-d316acd5e0b5/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   },
   aliexpress : function() {
-    return 'https://api.import.io/store/connector/f15c6b86-862b-4b53-942e-e4395be3815a/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
+    return 'https://api.import.io/store/connector/ebeff208-6fc7-4d04-9fe7-638efd277b9d/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   }
 }
 
