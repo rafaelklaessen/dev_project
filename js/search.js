@@ -45,10 +45,12 @@ $(document).ready(function() {
         t.removeClass('selected');
         f.removeClass('is-open');
         f.stop().slideUp(400);
+        $('.loading').css({'top' : '0'});
       } else {
         t.addClass('selected');
         f.addClass('is-open');
         f.stop().slideDown(400);
+        $('.loading').css({'top' : '300px'});
       }
 
     }
@@ -251,7 +253,7 @@ function search(search) {
                 alt = r;
                 break;
               case 'picture':
-                last.prepend('<img src="' + r + '" alt="' + alt + '">');
+                last.prepend('<figure bg="' + r + '" title="' + alt + '"></figure>');
                 break;
               case 'price':
                 last.append('<div class="price"><span class="price_currency">' + currency + '</span><span class="price_int">' + r + '</span><span class="price_tag">' + priceTag + '</span></div>');
@@ -288,6 +290,10 @@ function search(search) {
         correctURLs();
         //Hover effects must be added!
         addHover();
+        //Images must be set
+        setImages();
+        //Products must have the right size
+        setProductSize();
 
         //Hiding loading screen and running required stuff
         if (count == l) {
@@ -321,6 +327,29 @@ function search(search) {
   }
 }
 
+//Sets the size of products
+function setProductSize() {
+  $('.product-container .product').each(function() {
+    var width = $('.product').eq(0).width();
+
+    $(this).height(width * 1.5);
+  })
+}
+
+//Must be called when the window resizes
+$(window).resize(function() {
+  setProductSize();
+});
+
+//Sets images (for .product only!)
+function setImages() {
+  $('.product-container .product figure').each(function() {
+    var img = $(this).attr('bg');
+
+    $(this).css({'background-image' : 'url(' + img + ')'});
+  })
+}
+
 //Adds hover effects to products
 function addHover() {
   var p = $('.product-container .product');
@@ -336,13 +365,11 @@ function addHover() {
 
   p.hover(
     function() {
-      $(this).css({'border' : 'none'});
-      $(this).find('img').css({'transform' : 'scale(1.05)'})
+      $(this).find('figure').css({'transform' : 'scale(1.05)'})
       $(this).find('.hover-overlay').stop().fadeIn(400);
     },
     function() {
-      $(this).css({'border' : '1px solid #BFBFBF;'});
-        $(this).find('img').css({'transform' : 'scale(1)'})
+      $(this).find('figure').css({'transform' : 'scale(1)'})
       $(this).find('.hover-overlay').stop().fadeOut(400);
     }
   );
