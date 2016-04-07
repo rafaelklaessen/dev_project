@@ -1,6 +1,6 @@
 <?php
   //Put email adress here:
-  $to = "rafaelklaessen@hotmail.com";
+  $to = "gijs@de4gees.nl";
 
   //Define variables and set to empty values
   $nameErr = $emailErr = $msgErr = "";
@@ -91,7 +91,9 @@
           }, i * 200);
         });
 
-        $('.contact .title').delay(700).text('Thanks for getting in touch with us!');
+        setTimeout(function() {
+          $('.contact .title').text('Thanks for getting in touch with us!');
+        }, 800);
         $('.contact .thankyou-text').delay(1000).css({
           'transition' : 'none',
           '-moz-transition' : 'none',
