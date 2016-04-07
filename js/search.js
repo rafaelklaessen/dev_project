@@ -32,11 +32,11 @@ $(document).ready(function() {
       if (t.attr('sorting') == 'high') {
         sortPrice(false);
         t.attr('sorting', 'low');
-        tf.text('Low-High');
+        tf.text('High-Low');
       } else {
         sortPrice(true);
         t.attr('sorting', 'high');
-        tf.text('High-Low');
+        tf.text('Low-High');
       }
     } else if (t.is('[toggle-filters]')) {
       f = $('.filters');

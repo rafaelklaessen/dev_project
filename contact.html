@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Contact - NoodleSearching</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="beschrijving">
+    <meta name="keywords" content="keywords">
+    <meta name="author" content="Peter Christiaanse, Rafael Klaessen, Gijs Verdonschot, Wouter Molhoek">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <!--Open Graph data-->
+    <meta property="og:url" content="url">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="titel">
+    <meta property="og:description" content="beschrijving">
+    <meta property="og:image" content="afbeelding">
+    <!--Twitter card-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="url">
+    <meta name="twitter:creator" content="@twitternaam">
+    <meta name="twitter:title" content="titel">
+    <meta name="twitter:description" content="beschrijving">
+    <meta name="twitter:image" content="afbeelding">
+
+    <!--jQuery 2.2.2-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <!--Shortcut icon-->
+    <link rel="shortcut icon" href="images/icons/favicon.png">
+
+    <!--Apple stuff-->
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+
+    <!--CSS implementation-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/contact.css">
+
+    <!--JavaScript implementation-->
+    <script type="text/javascript" src="js/contact.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="images/logo.png" alt="Logo">
+    </header>
+    <section class="contact">
+      <h1 class="title">Get in touch.</h1>
+      <p class="thankyou-text">
+        We'll respond fast as possible!
+      </p>
+      <form action="mail.php" method="post">
+        <input type="text" placeholder="Name" name="name">
+        <div class="err" errName="name"></div>
+        <input type="text" placeholder="Email adress" name="email">
+        <div class="err" errName="email"></div>
+        <textarea placeholder="Message" name="msg"></textarea>
+        <div class="err" errName="msg"></div>
+        <input class="submit-btn" type="submit" value="Submit">
+        <h1 class="success">Thanks for sending us a message!</h1>
+      </form>
+      <div class="social">
+        <h3>or</h3>
+        <ul class="social-icons">
+          <li><a href="https://www.twitter.com" target="_blank"><img src="images/icons/twitter.png"></a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><img src="images/icons/facebook.png"></a></li>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

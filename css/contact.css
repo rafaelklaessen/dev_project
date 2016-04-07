@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic);
+
+body {
+  font-size: 18px;
+}
+
+header .logo {
+  margin-left: 90px;
+  margin-top: 25px;
+  width: auto;
+  height: 100%;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact .title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-size: 50px;
+  color: #FFFFFF;
+}
+
+.contact .thankyou-text {
+  margin: 0;
+  display: none;
+}
+
+.contact form {
+  margin-top: 35px;
+  width: auto;
+}
+
+.contact form input, .contact form textarea {
+  margin: auto;
+  margin-top: 30px;
+  padding-left: 10px;
+  width: 500px;
+  height: 40px;
+  color: #6A6A6A;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;;
+  border: 1px solid #BFBFBF;
+  border-radius: 5px;
+  outline-width: 0;
+  display: block;
+}
+
+.contact form textarea {
+  padding-top: 6px;
+  height: 100px;
+  resize: vertical;
+}
+
+.contact form .err {
+  color: 	#FF5050;
+}
+
+.contact form input.submit-btn {
+  width: 210px;
+  color: #FFFFFF;
+  background-color: #EB038B;
+  border: none;
+  cursor: pointer;
+}
+
+.contact form input.submit-btn:hover {
+  background-color: #C90376;
+}
+
+.contact form .success {
+  display: none;
+}
+
+.contact .social {
+  margin: auto;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.contact .social h3 {
+  margin: 0;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.contact .social .social-icons {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.contact .social .social-icons li {
+  float: left;
+}
+
+.contact .social .social-icons li a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.contact .social .social-icons li a:hover {
+  text-decoration: inherit;
+}
+
+.contact .social .social-icons li a img {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 30px;
+  height: 30px;
+}
