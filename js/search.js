@@ -50,7 +50,10 @@ $(document).ready(function() {
         t.addClass('selected');
         f.addClass('is-open');
         f.stop().slideDown(400);
-        $('.loading').css({'top' : '300px'});
+        $('.loading').css({'top' : f.css('max-height')});
+        $(window).resize(function() {
+          $('.loading').css({'top' : f.css('max-height')});
+        });
       }
 
     }
@@ -132,7 +135,7 @@ function convertPrices() {
   $('.product-container .product').each(function() {
     var cur = $(this).find('.price .price_currency'),
         c = cur.text(),
-        p_int = $(this).find('.price .price_int')
+        p_int = $(this).find('.price .price_int'),
         amount = p_int.text(),
         convertFrom = 'USD';
 
@@ -173,12 +176,14 @@ function convertRate(convertFrom, amount, p_int) {
     fx.rates = data.rates;
     r = fx(amount).from(convertFrom).to(set_currency).toFixed(2);
     p_int.text(r);
+    p_int.parents('.product').attr('price', r);
+    //If there was a search, there must be searched again to correct price differences.
+    searchValues();
   });
 
 }
 
 function filterShops() {
-
   $('.product-container [shop]').each(function() {
     if (shops.indexOf($(this).attr('shop')) != -1) {
       $(this).show();
@@ -186,6 +191,9 @@ function filterShops() {
       $(this).hide();
     }
   });
+
+  //The items must be sorted on price again, otherwise you'll see wrong items
+  searchValues();
 
 }
 
@@ -217,7 +225,7 @@ function search(search) {
     $('.product-container').html('');
 
     //Showing loading screen
-    $('body').css({'overflow' : 'hidden'});
+    $('body').css({'overflow-y' : 'hidden'});
     $('.loading').stop().fadeIn(200);
 
     count = 0;
@@ -297,7 +305,7 @@ function search(search) {
 
         //Hiding loading screen and running required stuff
         if (count == l) {
-          $('body').css({'overflow' : 'auto'});
+          $('body').css({'overflow-y' : 'auto'});
           $('.loading').stop().fadeOut(200);
           $('.product-container .product').append('<div class="hover-overlay"></div>');
           convertPrices();
@@ -419,7 +427,8 @@ function sortonPrice(min, max) {
     if (typeof max == 'undefined') max = Number.POSITIVE_INFINITY;
 
     $('.product-container .product').each(function(){
-      var p = $(this).attr('price')
+      var p = $(this).attr('price');
+
       if (p >= min && p <= max) {
         if (shops.indexOf($(this).attr('shop')) != -1) $(this).show();
       }else{

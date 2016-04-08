@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic);
 
 body {
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 header {
@@ -138,6 +139,8 @@ header .container .logo img {
   position: absolute;
   top: 200px;
   right: 0;
+  margin-left: -50px;
+  margin-right: -50px;
   padding-right: 90px;
   width: calc(100% - 400px);
   font-size: 18px;
@@ -172,7 +175,11 @@ header .container .logo img {
   cursor: pointer;
 }
 
-.filters-collapsed ul .selected {
+.filters-collapsed ul li span {
+  padding-bottom: 11px;
+}
+
+.filters-collapsed ul .selected span {
   border-bottom: 1px solid #FFFFFF;
 }
 
@@ -201,11 +208,20 @@ header .container .logo img {
   padding: 20px 90px;
   width: 100%;
   height: 300px;
+  max-height: 300px;
   background-color: #064BAC;
   display: none;
   transition: none;
   -moz-transition: none;
   -webkit-transition: none;
+}
+
+/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 1200px) {
+  .results .filters {
+    height: 520px;
+    max-height: 520px;
+  }
 }
 
 .results .filters .title {
@@ -217,8 +233,16 @@ header .container .logo img {
 
 .results .filters .group {
   float: left;
+  margin-bottom: 50px;
   width: 33.3333333333%;
   font-size: 18px;
+}
+
+/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 1200px) {
+  .results .filters .group {
+    width: 100%;
+  }
 }
 
 .results .filters .group .title {
@@ -292,6 +316,7 @@ header .container .logo img {
 .results .product-container {
   position: relative;
   margin-left: -40px;
+  margin-right: -40px;
   padding-left: 90px;
   padding-right: 90px;
   z-index: 2;
@@ -309,6 +334,37 @@ header .container .logo img {
   overflow: hidden;
   cursor: pointer;
   display: none;
+}
+
+/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 1200px) {
+  .results .product-container .product {
+    width: calc(33.3333333333% - 80px);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .results .product-container {
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+
+  .results .product-container .product {
+    margin: 0 30px 60px 30px;
+    width: calc(33.3333333333% - 60px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .results .product-container .product {
+    width: calc(50% - 60px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .results .product-container .product {
+    width: calc(100% - 60px);
+  }
 }
 
 .results .product-container .product figure {
@@ -370,6 +426,7 @@ header .container .logo img {
   text-align: center;
   background-color: #0860D8;
   z-index: 3;
+  display: none;
 }
 
 .results .loading .container {

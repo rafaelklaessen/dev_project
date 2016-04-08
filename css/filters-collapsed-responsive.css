@@ -1,0 +1,21 @@
+.filters-collapsed {
+  top: 292px;
+  left: 0;
+  margin-left: -25px;
+  margin-right: -25px;
+  padding-left: 90px;
+  width: 100%;
+}
+
+.filters-collapsed ul {
+  float: left;
+}
+
+.filters-collapsed ul li {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.results-activated {
+  top: 400px;
+}
