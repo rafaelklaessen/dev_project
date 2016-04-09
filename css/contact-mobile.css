@@ -1,0 +1,11 @@
+.contact {
+  margin-top: 130px;
+}
+
+.contact form input, .contact form textarea {
+  width: 230px;
+}
+
+.contact .social {
+  margin-top: 20px;
+}

@@ -1,0 +1,26 @@
+.search-activated form input.search-input {
+  width: calc(100% - 63px);
+}
+
+.results .filters {
+  height: 733px;
+  max-height: 733px;
+}
+
+/*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 305px) {
+  .results .filters {
+    height: 757px;
+    max-height: 757px;
+  }
+}
+
+.results .filters .sortonprice .input-content * {
+  display: block;
+}
+
+.results .filters .sortonprice .input-content input, .results .filters .sortonprice .input-content button {
+  margin-left: 15px;
+  margin-bottom: 10px;
+  width: calc(100% - 20px);
+}

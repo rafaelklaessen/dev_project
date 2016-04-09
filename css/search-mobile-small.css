@@ -1,0 +1,31 @@
+.search {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.search .intro-title {
+  margin-top: 125px;
+}
+
+.search-activated .intro-title {
+  margin-top: 0;
+}
+
+.filters-collapsed {
+  padding-left: 45px;
+  padding-right: 0;
+}
+
+.results .filters {
+  padding-left: 45px;
+  padding-right: 0;
+}
+
+.results .product-container {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.results .filters .sortonprice .input-content input, .results .filters .sortonprice .input-content button {
+  width: calc(100% - 65px);
+}

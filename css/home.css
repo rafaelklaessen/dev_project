@@ -5,34 +5,6 @@ body {
   overflow-x: hidden;
 }
 
-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-left: 90px;
-  padding-right: 90px;
-  width: 100%;
-  height: 100px;
-  z-index: 20;
-}
-
-header .container {
-  width: 100%;
-  height: 100%;
-}
-
-header .container .logo {
-  float: left;
-  margin: 0;
-  padding: 25px 0;
-  height: 100%;
-}
-
-header .container .logo img {
-  width: auto;
-  height: 100%;
-}
-
 .search {
   position: absolute;
   top: 0;
@@ -50,12 +22,24 @@ header .container .logo img {
 
 .search .intro-title {
   position: relative;
-  margin: 250px auto 90px auto;
+  margin: 225px auto 90px auto;
   width: 80%;
   font-size: 45px;
-  line-height: 72px;
   text-align: center;
-  z-index: 1;
+  z-index: 5;
+}
+
+/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 1100px) {
+  .search .intro-title {
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .search .intro-title {
+    font-size: 25px;
+  }
 }
 
 .search-activated .intro-title {
@@ -64,10 +48,14 @@ header .container .logo img {
   opacity: 0;
 }
 
+.search .intro-title div {
+  margin-top: 25px;
+}
+
 .search form {
   position: relative;
   text-align: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 .search-activated form {
@@ -98,6 +86,14 @@ header .container .logo img {
   border: 1px solid #BFBFBF;
 }
 
+/*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 710px) {
+  .search form input.search-input {
+    float: left;
+    width: calc(100% - 65px)
+  }
+}
+
 .search-activated form input.search-input {
   width: 250px;
   color: #FFFFFF;
@@ -114,6 +110,14 @@ header .container .logo img {
   background-color: #EB038B;
   color: #FFFFFF;
   cursor: pointer;
+}
+
+/*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
+@media screen and (max-width: 710px) {
+  .search form input.submit-btn {
+    margin-left: -10px;
+    width: 75px;
+  }
 }
 
 .search-activated form input.submit-btn {
@@ -196,6 +200,7 @@ header .container .logo img {
   left: 0;
   width: 100%;
   opacity: 0;
+  z-index: 3;
 }
 
 .results-activated {
@@ -216,11 +221,11 @@ header .container .logo img {
   -webkit-transition: none;
 }
 
-/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+/*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
 @media screen and (max-width: 1200px) {
   .results .filters {
-    height: 520px;
-    max-height: 520px;
+    height: 584px;
+    max-height: 584px;
   }
 }
 
@@ -238,7 +243,7 @@ header .container .logo img {
   font-size: 18px;
 }
 
-/*Yes, the media queries shouldn't be here, but this are so much custom queries that we would need too much files.*/
+/*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
 @media screen and (max-width: 1200px) {
   .results .filters .group {
     width: 100%;
@@ -274,7 +279,7 @@ header .container .logo img {
   margin: 0;
 }
 
-.results .filters .sortonprice .input-content input {
+.results .filters .sortonprice .input-content input, .results .filters .sortonprice .input-content button {
   margin-left: 5px;
   margin-right: 5px;
   padding-left: 10px;
@@ -289,17 +294,11 @@ header .container .logo img {
 }
 
 .results .filters .sortonprice .input-content button {
-  margin-left: 5px;
-  margin-right: 5px;
   width: 50px;
   height: 33px;
-  line-height: inherit;
-  font-size: 18px;
-  color: inherit;
   background-color: #EB038B;
   border: none;
   border-radius: 5px;
-  outline-width: 0;
 }
 
 .results .filters .sortonprice .input-content button:hover {
@@ -317,8 +316,7 @@ header .container .logo img {
   position: relative;
   margin-left: -40px;
   margin-right: -40px;
-  padding-left: 90px;
-  padding-right: 90px;
+  padding: 1px 90px 0 90px;
   z-index: 2;
 }
 
@@ -425,7 +423,7 @@ header .container .logo img {
   height: 100%;
   text-align: center;
   background-color: #0860D8;
-  z-index: 3;
+  z-index: 6;
   display: none;
 }
 

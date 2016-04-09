@@ -18,6 +18,7 @@ $(document).ready(function() {
     if (val != '' && val != ' ') {
       search(val);
       animateResults();
+      $('.search .intro-title').css({'z-index' : '1'});
     }
 
   });
@@ -52,7 +53,7 @@ $(document).ready(function() {
         f.stop().slideDown(400);
         $('.loading').css({'top' : f.css('max-height')});
         $(window).resize(function() {
-          $('.loading').css({'top' : f.css('max-height')});
+          if(f.hasClass('is-open'))  $('.loading').css({'top' : f.css('max-height')});
         });
       }
 
@@ -115,8 +116,8 @@ function animateResults() {
   $('.results').addClass('results-activated');
 }
 
-var names = ['banggood', 'gearbest', 'aliexpress'],
-    shops = ['banggood', 'gearbest', 'aliexpress'];
+var names = ['banggood', 'gearbest', 'aliexpress', 'miniinthebox', 'lightinthebox'],
+    shops = ['banggood', 'gearbest', 'aliexpress', 'miniinthebox', 'lightinthebox'];
 
 var urls = {
   banggood : function() {
@@ -127,6 +128,12 @@ var urls = {
   },
   aliexpress : function() {
     return 'https://api.import.io/store/connector/ebeff208-6fc7-4d04-9fe7-638efd277b9d/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
+  },
+  miniinthebox : function() {
+    return 'https://api.import.io/store/connector/328490e1-d1e8-4bdc-b447-673e5cbcdc6f/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
+  },
+  lightinthebox : function() {
+    return 'https://api.import.io/store/connector/f27d6b91-f76c-40b2-aa35-8c24871debdb/_query?input=searchwords:' + this + '&&_apikey=8a3cfc16c0a54e45ad44fc793f5e2825fae9fc9f528a26cd9c1529784cac9dbc60e868c3f3b069cdb58b375773b97fd2da21d09bda6fc34eeccabc08261d252327bb8dfc7e7f0e0c5388b0f598578cba';
   }
 }
 

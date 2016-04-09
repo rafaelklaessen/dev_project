@@ -4,14 +4,8 @@ body {
   font-size: 18px;
 }
 
-header .logo {
-  margin-left: 90px;
-  margin-top: 25px;
-  width: auto;
-  height: 100%;
-}
-
 .contact {
+  margin-top: 140px;
   text-align: center;
 }
 
