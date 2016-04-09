@@ -48,10 +48,6 @@ body {
   opacity: 0;
 }
 
-.search .intro-title div {
-  margin-top: 25px;
-}
-
 .search form {
   position: relative;
   text-align: center;
@@ -68,9 +64,14 @@ body {
   font-weight: 400;
   color: inherit;
   line-height: 40px;
+  max-height: 42px;
   border: none;
   border-radius: 5px;
   outline-width: 0;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
 }
 
 .search-activated form input {
@@ -107,8 +108,9 @@ body {
 .search form input.submit-btn {
   margin-left: 20px;
   width: 125px;
-  background-color: #EB038B;
   color: #FFFFFF;
+  background-color: #EB038B;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -314,6 +316,7 @@ body {
 
 .results .product-container {
   position: relative;
+  width: 100%;
   margin-left: -40px;
   margin-right: -40px;
   padding: 1px 90px 0 90px;
@@ -361,7 +364,7 @@ body {
 
 @media screen and (max-width: 650px) {
   .results .product-container .product {
-    width: calc(100% - 60px);
+    width: 100%;
   }
 }
 

@@ -1,5 +1,17 @@
+.search-activated {
+  top: 100px;
+}
+
 .search-activated form input.search-input {
   width: calc(100% - 63px);
+}
+
+.filters-collapsed {
+  top: 192px;
+}
+
+.results-activated {
+  top: 421px;
 }
 
 .results .filters {
