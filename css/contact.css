@@ -4,6 +4,11 @@ body {
   font-size: 18px;
 }
 
+/*Goes wrong with if the body has position: relative*/
+header {
+  top: -140px;
+}
+
 .contact {
   margin-top: 140px;
   text-align: center;

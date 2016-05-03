@@ -51,3 +51,130 @@ header .container .logo img {
   width: auto;
   height: 100%;
 }
+
+#nav-icon {
+  float: right;
+  margin-top: 33px;
+  width: 45px;
+  height: 33.75px;
+  transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon span {
+  position: absolute;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: #EB038B;
+  display: block;
+  opacity: 1;
+  transform: rotate(0);
+  -moz-transform: rotate(0);
+  -webkit-transform: rotate(0);
+  -o-transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+}
+
+#nav-icon span {
+  transform-origin: left center;
+  -moz-transform-origin: left center;
+  -webkit-transform-origin: left center;
+  -o-transform-origin: left center;
+}
+
+#nav-icon span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon span:nth-child(2) {
+  top: 13.5px;
+}
+
+#nav-icon span:nth-child(3) {
+  top: 27px;
+}
+
+#nav-icon.open span:nth-child(1) {
+  top: -2.25px;
+  left: 6px;
+  transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+#nav-icon.open span:nth-child(2) {
+  width: 0;
+  opacity: 0;
+}
+
+#nav-icon.open span:nth-child(3) {
+  top: 29.25px;
+  left: 6px;
+  transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+/*nav*/
+.pushmenu {
+  position: fixed;
+  top: 0;
+  background-color: #EB038B;
+  width: 240px;
+  height: 100%;
+  z-index: 1000;
+}
+
+/*Drops the nav vertically*/
+.pushmenu a {
+  padding: 32px 32px 32px 14px;
+  color: #FFFFFF;
+  font-size: 18px;
+  text-decoration: inherit;
+  display: block;
+}
+
+.pushmenu a:hover {
+  background:#0860D8;
+}
+
+.pushmenu a:active {
+  background: #454f5c;
+  color: #fff;
+}
+
+.pushmenu-left {
+  right: -240px;
+}
+
+.pushmenu-left.pushmenu-open {
+  right: 0;
+}
+
+.pushmenu-push {
+  position: relative;
+  right: 0;
+  overflow-x: hidden;
+}
+
+.pushmenu-push-toright {
+  right: 240px;
+}
+
+/*Transition*/
+.pushmenu, .pushmenu-push {
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
