@@ -64,6 +64,9 @@ header {
   background-color: #EB038B;
   border: none;
   cursor: pointer;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 .contact form input.submit-btn:hover {

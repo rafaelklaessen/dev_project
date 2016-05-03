@@ -71,7 +71,6 @@ body {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-
 }
 
 .search-activated form input {
@@ -319,8 +318,9 @@ body {
   width: 100%;
   margin-left: -40px;
   margin-right: -40px;
-  padding: 1px 90px 0 90px;
+  padding: 1px 0 0 90px;
   z-index: 2;
+  overflow: auto;
 }
 
 .results .product-container .product {
