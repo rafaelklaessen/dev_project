@@ -84,7 +84,7 @@ body {
   color: #6A6A6A;
   font-style: italic;
   border: 1px solid #BFBFBF;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
