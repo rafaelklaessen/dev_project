@@ -84,13 +84,14 @@ body {
   color: #6A6A6A;
   font-style: italic;
   border: 1px solid #BFBFBF;
+  font-size: 15px;
 }
 
 /*Yes, the media query shouldn't be here, but this are so much custom queries that we would need too much files.*/
 @media screen and (max-width: 710px) {
   .search form input.search-input {
     float: left;
-    width: calc(100% - 65px)
+    width: calc(100% - 65px);
   }
 }
 
@@ -193,6 +194,15 @@ body {
   width: 30px;
   height: 30px;
   vertical-align: middle;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+.filters-collapsed ul li img.rotated {
+  transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
 }
 
 .results {

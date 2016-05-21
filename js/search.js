@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     var val = $('.search form .search-input').val();
 
-    if (val != '' && val != ' ') {
+    if (val.trim() != '') {
       search(val);
       animateResults();
       $('.search .intro-title').css({'z-index' : '1'});
@@ -28,16 +28,19 @@ $(document).ready(function() {
 
     //Soring
     if (t.is('[sorting]')) {
-      var tf = t.find('.indication');
+      var tind = t.find('.indication'),
+          icon = t.find('img');
 
       if (t.attr('sorting') == 'high') {
         sortPrice(false);
         t.attr('sorting', 'low');
-        tf.text('High-Low');
+        tind.text('High-Low');
+        icon.addClass('rotated');
       } else {
         sortPrice(true);
         t.attr('sorting', 'high');
-        tf.text('Low-High');
+        tind.text('Low-High');
+        icon.removeClass('rotated');
       }
     } else if (t.is('[toggle-filters]')) {
       f = $('.filters');

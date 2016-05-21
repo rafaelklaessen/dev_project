@@ -18,13 +18,13 @@
   }
 
   .results-activated {
-    top: 400px;
+    top: 345px;
   }
 }
 
 @media screen and (max-width: 900px) {
   .results-activated {
-    top: 521px;
+    top: 476px;
   }
 
   .filters-collapsed ul li {
