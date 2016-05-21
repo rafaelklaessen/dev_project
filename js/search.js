@@ -330,13 +330,13 @@ function search(search) {
 
     //Makes products clickable
     function openLink() {
-      $('.product').click(function(){
+      $('.product').click(function() {
         link = $(this).attr('link');
 
         if (typeof link != 'undefined') {
           window.open(link);
         }
-      })
+      });
     }
 
     return true;
