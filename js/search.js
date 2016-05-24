@@ -383,11 +383,11 @@ function addHover() {
 
   p.hover(
     function() {
-      $(this).find('figure').css({'transform' : 'scale(1.05)'})
+      $(this).find('figure').css({'transform' : 'scale(1.05)'});
       $(this).find('.hover-overlay').stop().fadeIn(400);
     },
     function() {
-      $(this).find('figure').css({'transform' : 'scale(1)'})
+      $(this).find('figure').css({'transform' : 'scale(1)'});
       $(this).find('.hover-overlay').stop().fadeOut(400);
     }
   );
@@ -395,7 +395,7 @@ function addHover() {
 
 //Correct URL when the shop is gearbest
 function correctURLs() {
-  $('.product[shop=gearbest]').each(function() {
+  $('.product').each(function() {
     var orgLinks = $(this).attr('link'),
         newLinks = orgLinks.split(',');
 
@@ -411,7 +411,7 @@ function sortPrice(d) {
 
     lastSet = d;
 
-    if (d == true) {
+    if (d) {
       d = 1;
     } else {
       d = -1;
