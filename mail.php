@@ -1,6 +1,6 @@
 <?php
   //Put email adress here:
-  $to = "gijs@de4gees.nl";
+  $to = "contact@noodlesearching.com";
 
   //Define variables and set to empty values
   $nameErr = $emailErr = $msgErr = "";
