@@ -47,7 +47,12 @@ header .container .logo {
   height: 100%;
 }
 
-header .container .logo img {
+header .container .logo a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+header .container .logo a img {
   width: auto;
   height: 100%;
 }
